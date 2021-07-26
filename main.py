@@ -4,7 +4,7 @@ import pandas as pd
 
 
 st.write("""
-# Simple Stock Price Viewer Web App
+# Simple Stock Price Viewer Web App in Streamlit GUI
 
 Shown are the stock closing price and volume of Intellia Therapeutics!
 
