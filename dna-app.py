@@ -1,7 +1,7 @@
 #####################
 # Import libraries
 #####################
-
+import numpy as np
 import streamlit as st
 import pandas as pd
 from PIL import Image
@@ -78,4 +78,25 @@ st.write('There are ' + str(X['A']) + ' adenine (A)')
 st.write('There are ' + str(X['T']) + ' thymine (T)')
 st.write('There are ' + str(X['G']) + ' guanine (G)')
 st.write('There are ' + str(X['C']) + ' cytosine (C)')
+
+# 3. Display DataFrame
+st.subheader('3. Display DataFrame')
+df = pd.DataFrame.from_dict(X, orient='index')
+df.reset_index(inplace=True)
+df.columns = ['nucleotide', 'count']
+st.dataframe(df)
+
+# 4. Display Bar Chat using Altair
+st.subheader('4. Display Bar chart')
+p = alt.Chart(df).mark_bar().encode(
+    # Set Label Angle to fkn readable
+    x=alt.X('nucleotide', axis=alt.Axis(labelAngle=0)),
+    y='count'
+)
+
+p = p.properties(
+    width=alt.Step(80) # WIDTH of the bar.
+)
+
+st.write(p)
 
